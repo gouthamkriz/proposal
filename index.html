@@ -1,390 +1,346 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Archana, I Love You!</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7, #dda0dd);
-            background-size: 400% 400%;
-            animation: gradientShift 6s ease infinite;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-        
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        .proposal-container {
-            text-align: center;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 50px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            position: relative;
-            z-index: 10;
-        }
-        
-        .hearts {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-        }
-        
-        .heart {
-            position: absolute;
-            font-size: 20px;
-            color: #ff6b6b;
-            animation: floating 6s ease-in-out infinite;
-            opacity: 0.7;
-        }
-        
-        @keyframes floating {
-            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.7; }
-            90% { opacity: 0.7; }
-            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
-        }
-        
-        h1 {
-            color: #2c3e50;
-            margin-bottom: 30px;
-            font-size: 3em;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-            animation: pulse 2s ease-in-out infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        
-        .button-container {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            align-items: center;
-            margin-top: 40px;
-            flex-wrap: wrap;
-            position: relative;
-            width: 100%;
-            min-height: 100px;
-            overflow: visible;
-        }
-        
-        .btn {
-            padding: 15px 30px;
-            border: none;
-            border-radius: 50px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .btn-yes {
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            color: white;
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
-        }
-        
-        .btn-yes:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
-        }
-        
-        .btn-no {
-            background: linear-gradient(45deg, #95a5a6, #34495e);
-            color: white;
-            box-shadow: 0 5px 15px rgba(149, 165, 166, 0.3);
-            transition: all 0.5s ease-out;
-        }
-        
-        .btn-no:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(149, 165, 166, 0.4);
-        }
-        
-        .success-container {
-            display: none;
-            text-align: center;
-            color: white;
-        }
-        
-        .success-title {
-            font-size: 4em;
-            margin-bottom: 20px;
-            animation: bounceIn 1s ease-out;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
-        }
-        
-        .success-subtitle {
-            font-size: 1.5em;
-            animation: slideInFromBottom 1s ease-out 0.5s both;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-        
-        @keyframes bounceIn {
-            0% { transform: scale(0); opacity: 0; }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        
-        @keyframes slideInFromBottom {
-            0% { transform: translateY(100px); opacity: 0; }
-            100% { transform: translateY(0); opacity: 1; }
-        }
-        
-        .firework {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            animation: firework 1s ease-out infinite;
-        }
-        
-        @keyframes firework {
-            0% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(20); opacity: 0; }
-        }
-        
-        .confetti {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            animation: confetti 3s linear infinite;
-        }
-        
-        @keyframes confetti {
-            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Archana, I Love You!</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7, #dda0dd);
+      background-size: 400% 400%;
+      animation: gradientShift 6s ease infinite;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .proposal-container {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 50px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      position: relative;
+      z-index: 10;
+    }
+
+    .hearts {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      color: #ff6b6b;
+      animation: floating 6s ease-in-out infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes floating {
+      0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.7; }
+      90% { opacity: 0.7; }
+      100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+    }
+
+    h1 {
+      color: #2c3e50;
+      margin-bottom: 30px;
+      font-size: 3em;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .button-container {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+      margin-top: 40px;
+      flex-wrap: wrap;
+      position: relative;
+      width: 100%;
+      min-height: 100px;
+      overflow: visible;
+    }
+
+    .btn {
+      padding: 15px 30px;
+      border: none;
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .btn-yes {
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+      color: white;
+      box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+    }
+
+    .btn-yes:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+    }
+
+    .btn-no {
+      background: linear-gradient(45deg, #95a5a6, #34495e);
+      color: white;
+      box-shadow: 0 5px 15px rgba(149, 165, 166, 0.3);
+      transition: all 0.5s ease-out;
+    }
+
+    .btn-no:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(149, 165, 166, 0.4);
+    }
+
+    .success-container {
+      display: none;
+      text-align: center;
+      color: white;
+    }
+
+    .success-title {
+      font-size: 4em;
+      margin-bottom: 20px;
+      animation: bounceIn 1s ease-out;
+      text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .success-subtitle {
+      font-size: 1.5em;
+      animation: slideInFromBottom 1s ease-out 0.5s both;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0); opacity: 0; }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes slideInFromBottom {
+      0% { transform: translateY(100px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    .firework {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      animation: firework 1s ease-out infinite;
+    }
+
+    @keyframes firework {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(20); opacity: 0; }
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      animation: confetti 3s linear infinite;
+    }
+
+    @keyframes confetti {
+      0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
+  </style>
 </head>
 <body>
-    <div class="hearts" id="hearts"></div>
-    
-    <div class="proposal-container" id="proposalContainer">
-        <h1>Archana, I Love You! Do You Love Me? 💕</h1>
-        <div class="button-container" id="buttonContainer">
-            <button class="btn btn-yes" id="yesBtn">Yes, I Love You Too! 💕</button>
-            <button class="btn btn-no" id="noBtn">No</button>
-        </div>
+  <div class="hearts" id="hearts"></div>
+
+  <div class="proposal-container" id="proposalContainer">
+    <h1>Archana, I Love You! Do You Love Me? 💕</h1>
+    <div class="button-container" id="buttonContainer">
+      <button class="btn btn-yes" id="yesBtn">Yes, I Love You Too! 💕</button>
+      <button class="btn btn-no" id="noBtn">No</button>
     </div>
-    
-    <div class="success-container" id="successContainer">
-        <h1 class="success-title">Welcome to Our Love Story, Archana! 🎉</h1>
-        <p class="success-subtitle">Forever and Always Together 💖</p>
-    </div>
+  </div>
 
-    <script>
-        let noClickCount = 0;
-        const yesBtn = document.getElementById('yesBtn');
-        const noBtn = document.getElementById('noBtn');
-        const proposalContainer = document.getElementById('proposalContainer');
-        const successContainer = document.getElementById('successContainer');
-        const hearts = document.getElementById('hearts');
+  <div class="success-container" id="successContainer">
+    <h1 class="success-title">Welcome to Our Love Story, Archana! 🎉</h1>
+    <p class="success-subtitle">Forever and Always Together 💖</p>
+  </div>
 
-        // Create floating hearts
-        function createHearts() {
-            for (let i = 0; i < 15; i++) {
-                setTimeout(() => {
-                    const heart = document.createElement('div');
-                    heart.className = 'heart';
-                    heart.innerHTML = '💖';
-                    heart.style.left = Math.random() * 100 + '%';
-                    heart.style.animationDelay = Math.random() * 6 + 's';
-                    heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
-                    hearts.appendChild(heart);
-                    
-                    setTimeout(() => {
-                        heart.remove();
-                    }, 6000);
-                }, i * 200);
-            }
-        }
+  <script>
+    let noClickCount = 0;
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+    const proposalContainer = document.getElementById('proposalContainer');
+    const successContainer = document.getElementById('successContainer');
+    const hearts = document.getElementById('hearts');
 
-        // Start hearts animation
-        createHearts();
-        setInterval(createHearts, 6000);
+    // Floating hearts
+    function createHearts() {
+      for (let i = 0; i < 15; i++) {
+        setTimeout(() => {
+          const heart = document.createElement('div');
+          heart.className = 'heart';
+          heart.innerHTML = '💖';
+          heart.style.left = Math.random() * 100 + '%';
+          heart.style.animationDelay = Math.random() * 6 + 's';
+          heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+          hearts.appendChild(heart);
+          setTimeout(() => { heart.remove(); }, 6000);
+        }, i * 200);
+      }
+    }
+    createHearts();
+    setInterval(createHearts, 6000);
 
-        // Handle Yes button click
-        yesBtn.addEventListener('click', function() {
-            // Hide proposal container
-            proposalContainer.style.display = 'none';
-            
-            // Show success message
-            successContainer.style.display = 'block';
-            
-            // Create fireworks
-            createFireworks();
-            
-            // Create confetti
-            createConfetti();
-            
-            // Change background to celebration
-            document.body.style.background = 'linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7, #dda0dd)';
-        });
+    // Yes click
+    yesBtn.addEventListener('click', () => {
+      proposalContainer.style.display = 'none';
+      successContainer.style.display = 'block';
+      createFireworks();
+      createConfetti();
+      document.body.style.background =
+        'linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7, #dda0dd)';
+    });
 
-        // Handle No button click
-        noBtn.addEventListener('click', function() {
-            noClickCount++;
-            
-            // Calculate proportional scaling based on screen coverage
-            let scale;
-            switch(noClickCount) {
-                case 1: scale = 1.2; break;   // 20% bigger
-                case 2: scale = 1.5; break;   // 50% bigger
-                case 3: scale = 2.0; break;   // 2x size
-                case 4: scale = 3.0; break;   // 3x size (1/4 screen)
-                case 5: scale = 4.5; break;   // 4.5x size (1/2 screen)
-                case 6: scale = 6.5; break;   // 6.5x size (3/4 screen)
-                case 7: scale = 1; break;     // Will be handled separately
-            }
-            
-            if (noClickCount < 7) {
-                yesBtn.style.transform = `scale(${scale})`;
-                yesBtn.style.zIndex = '1000';
-            }
-            
-            // Move No button in a pattern that keeps it visible
-            let moveX = 0;
-            let moveY = 0;
-            
-            switch(noClickCount) {
-                case 1: moveX = 80; moveY = 0; break;
-                case 2: moveX = 80; moveY = -60; break;
-                case 3: moveX = 0; moveY = -80; break;
-                case 4: moveX = -80; moveY = -60; break;
-                case 5: moveX = -80; moveY = 0; break;
-                case 6: moveX = -40; moveY = 60; break;
-                case 7: moveX = 40; moveY = 60; break;
-            }
-            
-            const squeezeScale = Math.max(0.1, 1 - (noClickCount * 0.08));
-            
-            noBtn.style.transform = `translate(${moveX}px, ${moveY}px) scale(${squeezeScale})`;
-            noBtn.style.transition = 'all 0.5s ease-out';
-            noBtn.style.zIndex = '2000';
-            
-            // On 7th click, make Yes button fill screen and completely hide No button
-            if (noClickCount >= 7) {
-                yesBtn.style.position = 'fixed';
-                yesBtn.style.top = '0';
-                yesBtn.style.left = '0';
-                yesBtn.style.width = '100vw';
-                yesBtn.style.height = '100vh';
-                yesBtn.style.borderRadius = '0';
-                yesBtn.style.fontSize = '8vw';
-                yesBtn.style.zIndex = '10000';
-                yesBtn.style.display = 'flex';
-                yesBtn.style.alignItems = 'center';
-                yesBtn.style.justifyContent = 'center';
-                yesBtn.style.textAlign = 'center';
-                yesBtn.style.lineHeight = '1';
-                yesBtn.style.transform = 'none';
-                yesBtn.innerHTML = 'YES, I LOVE YOU TOO! 💕';
-                
-                // Completely squeeze the No button to nothing
-                noBtn.style.transform = `translate(${moveX}px, ${moveY}px) scale(0)`;
-                noBtn.style.opacity = '0';
-                
-                setTimeout(() => {
-                    noBtn.style.display = 'none';
-                }, 500);
-            }
-            
-            // Add some fun messages
-            const messages = [
-                "Are you sure? 🥺",
-                "Think about it... 💭",
-                "Really? 😢",
-                "Just once more? 🙏",
-                "Please? 💖",
-                "I love you! 😍",
-                "Yes is the only option now! 😄"
-            ];
-            
-            if (noClickCount <= 7) {
-                const messageDiv = document.createElement('div');
-                messageDiv.textContent = messages[Math.min(noClickCount - 1, messages.length - 1)];
-                messageDiv.style.position = 'absolute';
-                messageDiv.style.top = '-60px';
-                messageDiv.style.left = '50%';
-                messageDiv.style.transform = 'translateX(-50%)';
-                messageDiv.style.background = 'rgba(255, 107, 107, 0.9)';
-                messageDiv.style.color = 'white';
-                messageDiv.style.padding = '10px 20px';
-                messageDiv.style.borderRadius = '20px';
-                messageDiv.style.fontSize = '14px';
-                messageDiv.style.animation = 'bounceIn 0.5s ease-out';
-                
-                proposalContainer.appendChild(messageDiv);
-                
-                setTimeout(() => {
-                    messageDiv.remove();
-                }, 2000);
-            }
-        });
+    // No click
+    noBtn.addEventListener('click', () => {
+      noClickCount++;
+      let scale;
+      switch (noClickCount) {
+        case 1: scale = 1.2; break;
+        case 2: scale = 1.5; break;
+        case 3: scale = 2.0; break;
+        case 4: scale = 3.0; break;
+        case 5: scale = 4.5; break;
+        case 6: scale = 6.5; break;
+        case 7: scale = 1; break;
+      }
 
-        function createFireworks() {
-            for (let i = 0; i < 20; i++) {
-                setTimeout(() => {
-                    const firework = document.createElement('div');
-                    firework.className = 'firework';
-                    firework.style.left = Math.random() * 100 + '%';
-                    firework.style.top = Math.random() * 100 + '%';
-                    firework.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
-                    document.body.appendChild(firework);
-                    
-                    setTimeout(() => {
-                        firework.remove();
-                    }, 1000);
-                }, i * 100);
-            }
-        }
+      if (noClickCount < 7) {
+        yesBtn.style.transform = `scale(${scale})`;
+        yesBtn.style.zIndex = '1000';
+      }
 
-        function createConfetti() {
-            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#dda0dd'];
-            
-            for (let i = 0; i < 50; i++) {
-                setTimeout(() => {
-                    const confetti = document.createElement('div');
-                    confetti.className = 'confetti';
-                    confetti.style.left = Math.random() * 100 + '%';
-                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-                    confetti.style.animationDelay = Math.random() * 3 + 's';
-                    document.body.appendChild(confetti);
-                    
-                    setTimeout(() => {
-                        confetti.remove();
-                    }, 3000);
-                }, i * 50);
-            }
-        }
-    </script>
+      let moveX = 0, moveY = 0;
+      switch (noClickCount) {
+        case 1: moveX = 80; moveY = 0; break;
+        case 2: moveX = 80; moveY = -60; break;
+        case 3: moveX = 0; moveY = -80; break;
+        case 4: moveX = -80; moveY = -60; break;
+        case 5: moveX = -80; moveY = 0; break;
+        case 6: moveX = -40; moveY = 60; break;
+        case 7: moveX = 40; moveY = 60; break;
+      }
+      const squeezeScale = Math.max(0.1, 1 - (noClickCount * 0.08));
+      noBtn.style.transform = `translate(${moveX}px, ${moveY}px) scale(${squeezeScale})`;
+      noBtn.style.transition = 'all 0.5s ease-out';
+      noBtn.style.zIndex = '2000';
+
+      // Fullscreen Yes
+      if (noClickCount >= 7) {
+        yesBtn.style.position = 'fixed';
+        yesBtn.style.top = '0';
+        yesBtn.style.left = '0';
+        yesBtn.style.width = '100vw';
+        yesBtn.style.height = '100vh';
+        yesBtn.style.borderRadius = '0';
+        yesBtn.style.fontSize = '8vw';
+        yesBtn.style.zIndex = '10000';
+        yesBtn.style.display = 'flex';
+        yesBtn.style.alignItems = 'center';
+        yesBtn.style.justifyContent = 'center';
+        yesBtn.style.textAlign = 'center';
+        yesBtn.style.lineHeight = '1.2';
+        yesBtn.style.transform = 'none';
+        yesBtn.innerHTML = 'YES, I LOVE YOU TOO! 💕';
+
+        noBtn.style.transform = `translate(${moveX}px, ${moveY}px) scale(0)`;
+        noBtn.style.opacity = '0';
+        setTimeout(() => { noBtn.style.display = 'none'; }, 500);
+      }
+
+      const messages = [
+        "Are you sure? 🥺",
+        "Think about it... 💭",
+        "Really? 😢",
+        "Just once more? 🙏",
+        "Please? 💖",
+        "I love you! 😍",
+        "Yes is the only option now! 😄"
+      ];
+      if (noClickCount <= 7) {
+        const messageDiv = document.createElement('div');
+        messageDiv.textContent = messages[Math.min(noClickCount - 1, messages.length - 1)];
+        messageDiv.style.position = 'absolute';
+        messageDiv.style.top = '-60px';
+        messageDiv.style.left = '50%';
+        messageDiv.style.transform = 'translateX(-50%)';
+        messageDiv.style.background = 'rgba(255, 107, 107, 0.9)';
+        messageDiv.style.color = 'white';
+        messageDiv.style.padding = '10px 20px';
+        messageDiv.style.borderRadius = '20px';
+        messageDiv.style.fontSize = '14px';
+        messageDiv.style.animation = 'bounceIn 0.5s ease-out';
+        proposalContainer.appendChild(messageDiv);
+        setTimeout(() => { messageDiv.remove(); }, 2000);
+      }
+    });
+
+    function createFireworks() {
+      for (let i = 0; i < 20; i++) {
+        setTimeout(() => {
+          const firework = document.createElement('div');
+          firework.className = 'firework';
+          firework.style.left = Math.random() * 100 + '%';
+          firework.style.top = Math.random() * 100 + '%';
+          firework.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+          document.body.appendChild(firework);
+          setTimeout(() => { firework.remove(); }, 1000);
+        }, i * 100);
+      }
+    }
+
+    function createConfetti() {
+      const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#dda0dd'];
+      for (let i = 0; i < 50; i++) {
+        setTimeout(() => {
+          const confetti = document.createElement('div');
+          confetti.className = 'confetti';
+          confetti.style.left = Math.random() * 100 + '%';
+          confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+          confetti.style.animationDelay = Math.random() * 3 + 's';
+          document.body.appendChild(confetti);
+          setTimeout(() => { confetti.remove(); }, 3000);
+        }, i * 50);
+      }
+    }
+  </script>
 </body>
-
 </html>
